@@ -86,6 +86,7 @@ const roundsSummaryEl = document.querySelector("#roundsSummary");
 const roundListEl = document.querySelector("#roundList");
 const roundItemTemplate = document.querySelector("#roundItemTemplate");
 const mobileLayoutQuery = window.matchMedia("(max-width: 820px)");
+const shareButton = document.querySelector("#shareButton");
 
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
@@ -229,6 +230,7 @@ function renderCurrentRound() {
   if (isFinished) {
     roundsPanel.classList.remove("collapsed");
     roundsToggle.setAttribute("aria-expanded", "true");
+    shareButton.style.display = isFinished ? "block" : "none";
   }
 }
 
@@ -308,6 +310,54 @@ function setLayer(mode) {
   mapModeButton.classList.toggle("active", !useSatellite);
   closeLayerMenu();
 }
+
+function buildShareText() {
+  const [year, month, day] = todayKey().split("-").map(Number);
+  const dateStr = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(year, month - 1, day));
+
+  function scoreEmoji(score) {
+    if (score >= 90) return "🟩";
+    if (score >= 60) return "🟨";
+    if (score >= 30) return "🟧";
+    return "🟥";
+  }
+
+  const emojiRow = state.results.map((r) => scoreEmoji(r.score)).join("");
+  const lines = [
+    `📍 MapTap BloNo – ${dateStr}`,
+    `Score: ${state.totalScore} / 500`,
+    ``,
+    emojiRow,
+    ``,
+    ...state.dailyLocations.map((loc, i) => {
+      const r = state.results[i];
+      return `${scoreEmoji(r.score)} ${loc.name}: ${r.score}/100 (${formatDistance(r.distance)})`;
+    }),
+  ];
+
+  return lines.join("\n");
+}
+
+function shareResults() {
+  const text = buildShareText();
+
+  if (navigator.share) {
+    // Native share sheet on mobile
+    navigator.share({ text }).catch(() => {});
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(text).then(() => {
+      shareButton.textContent = "Copied!";
+      setTimeout(() => (shareButton.textContent = "Share Results"), 2000);
+    });
+  }
+}
+
+shareButton.addEventListener("click", shareResults);
 
 state.dailyLocations = dailySelection();
 renderCurrentRound();
