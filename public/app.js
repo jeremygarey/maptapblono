@@ -73,7 +73,6 @@ let resultLine = null;
 
 const totalScoreEl = document.querySelector("#totalScore");
 const roundLabelEl = document.querySelector("#roundLabel");
-const targetNameEl = document.querySelector("#targetName");
 const tapPromptEl = document.querySelector("#tapPrompt");
 const nextButton = document.querySelector("#nextButton");
 const layerMenu = document.querySelector("#layerMenu");
@@ -213,9 +212,6 @@ function renderCurrentRound() {
   roundLabelEl.textContent = isFinished
     ? "Done"
     : `${state.roundIndex + 1} / ${GAME_ROUNDS}`;
-  targetNameEl.textContent = isFinished
-    ? "Daily game complete"
-    : state.dailyLocations[state.roundIndex].name;
   tapPromptEl.textContent = isFinished
     ? `Final score: ${state.totalScore} / 500`
     : `Where is ${state.dailyLocations[state.roundIndex].name}?`;

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>MapTap BloNo</title>
+    <title>Tap BloNo</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -25,14 +25,46 @@
   </head>
   <body>
     <main class="app-shell">
-      <section class="game-panel" aria-label="MapTap Blono game">
+      <section class="game-panel glass" aria-label="Tap Blono game">
         <header class="topbar">
           <div>
-            <h1>MapTap BloNo</h1>
+            <h1>Tap BloNo</h1>
           </div>
-          <div class="scorebox" aria-label="Current score">
-            <span id="totalScore">0</span>
-            <small>/ 500</small>
+
+          <div class="button-group">
+            <div class="layer-menu" id="layerMenu">
+              <button
+                id="layerToggle"
+                class="layer-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="layerOptions"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  class="map-icon"
+                  fill="currentColor"
+                >
+                  <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                  <path
+                    d="M576 112C576 103.7 571.7 96 564.7 91.6C557.7 87.2 548.8 86.8 541.4 90.5L416.5 152.1L244 93.4C230.3 88.7 215.3 89.6 202.1 95.7L77.8 154.3C69.4 158.2 64 166.7 64 176L64 528C64 536.2 68.2 543.9 75.1 548.3C82 552.7 90.7 553.2 98.2 549.7L225.5 489.8L396.2 546.7C409.9 551.3 424.7 550.4 437.8 544.2L562.2 485.7C570.6 481.7 576 473.3 576 464L576 112zM208 146.1L208 445.1L112 490.3L112 191.3L208 146.1zM256 449.4L256 148.3L384 191.8L384 492.1L256 449.4zM432 198L528 150.6L528 448.8L432 494L432 198z"
+                  />
+                </svg>
+              </button>
+              <div id="layerOptions" class="layer-options">
+                <div class="segmented" role="group" aria-label="Map style">
+                  <button id="satelliteMode" class="active" type="button">
+                    Satellite
+                  </button>
+                  <button id="mapMode" type="button">Map</button>
+                </div>
+              </div>
+            </div>
+            <div class="scorebox" aria-label="Current score">
+              <span id="totalScore">0</span>
+              <small>/ 500</small>
+            </div>
           </div>
         </header>
 
@@ -41,41 +73,14 @@
             <span class="label">Round</span>
             <strong id="roundLabel">1 / 5</strong>
           </div>
-          <div>
-            <span class="label">Target</span>
-            <strong id="targetName">Loading...</strong>
+          <div class="tap-prompt">
+            <strong id="tapPrompt">Tap where you think the target is </strong>
           </div>
         </div>
+      </section>
 
+      <section>
         <div class="controls" aria-label="Game controls">
-          <div class="layer-menu" id="layerMenu">
-            <button
-              id="layerToggle"
-              class="layer-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="layerOptions"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-                class="map-icon"
-              >
-                <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                <path
-                  d="M576 112C576 103.7 571.7 96 564.7 91.6C557.7 87.2 548.8 86.8 541.4 90.5L416.5 152.1L244 93.4C230.3 88.7 215.3 89.6 202.1 95.7L77.8 154.3C69.4 158.2 64 166.7 64 176L64 528C64 536.2 68.2 543.9 75.1 548.3C82 552.7 90.7 553.2 98.2 549.7L225.5 489.8L396.2 546.7C409.9 551.3 424.7 550.4 437.8 544.2L562.2 485.7C570.6 481.7 576 473.3 576 464L576 112zM208 146.1L208 445.1L112 490.3L112 191.3L208 146.1zM256 449.4L256 148.3L384 191.8L384 492.1L256 449.4zM432 198L528 150.6L528 448.8L432 494L432 198z"
-                />
-              </svg>
-            </button>
-            <div id="layerOptions" class="layer-options">
-              <div class="segmented" role="group" aria-label="Map style">
-                <button id="satelliteMode" class="active" type="button">
-                  Satellite
-                </button>
-                <button id="mapMode" type="button">Map</button>
-              </div>
-            </div>
-          </div>
           <button id="nextButton" class="primary" type="button" disabled>
             Next round
           </button>
@@ -84,12 +89,9 @@
 
       <section class="map-wrap" aria-label="Tap map">
         <div id="map"></div>
-        <div id="tapPrompt" class="tap-prompt">
-          Tap where you think the target is
-        </div>
       </section>
 
-      <section class="rounds" id="roundsPanel" aria-label="Round scores">
+      <section class="rounds glass" id="roundsPanel" aria-label="Round scores">
         <button
           id="roundsToggle"
           class="rounds-toggle"

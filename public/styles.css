@@ -5,6 +5,7 @@
   --line: #dce5df;
   --panel: #ffffff;
   --field: #eef4f1;
+  --field-dark: #dee3e1;
   --accent: #cf3f2f;
   --accent-dark: #9f2d22;
   --good: #157f5b;
@@ -86,7 +87,9 @@ h1 {
 
 .scorebox {
   align-items: baseline;
-  background: var(--ink);
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   color: #fff;
   display: flex;
@@ -114,8 +117,9 @@ h1 {
 }
 
 .status-grid > div {
-  background: var(--field);
-  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   display: grid;
   gap: 4px;
@@ -179,12 +183,11 @@ h1 {
 }
 
 .primary {
-  background: var(--accent);
-  color: #fff;
+  background: var(--field);
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--accent-dark);
+  background: var(--field-dark);
 }
 
 .primary:disabled {
@@ -211,22 +214,6 @@ h1 {
   max-width: none;
 }
 
-.tap-prompt {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(23, 33, 29, 0.18);
-  font-weight: 800;
-  left: 50%;
-  max-width: min(90vw, 420px);
-  padding: 10px 14px;
-  position: absolute;
-  text-align: center;
-  top: 16px;
-  transform: translateX(-50%);
-  z-index: 500;
-}
-
 .share-button {
   width: 100%;
   margin-top: 10px;
@@ -235,8 +222,8 @@ h1 {
 }
 
 .rounds {
+  color: var(--field);
   align-self: end;
-  background: #f8fbf9;
   border-right: 1px solid var(--line);
   padding: 0 24px 24px;
   position: relative;
@@ -265,7 +252,6 @@ h1 {
 }
 
 .round-name {
-  color: var(--muted);
   font-size: 0.9rem;
   font-weight: 750;
   overflow: hidden;
@@ -274,7 +260,6 @@ h1 {
 }
 
 .round-score {
-  color: var(--good);
   font-weight: 850;
 }
 
@@ -302,9 +287,17 @@ h1 {
     position: relative;
   }
 
+  .glass {
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
   .game-panel {
+    color: var(--field);
+    margin: 10px;
+    border-radius: 20px;
     border-right: 0;
-    box-shadow: 0 8px 24px rgba(23, 33, 29, 0.14);
     gap: 8px;
     padding: 10px 12px;
     z-index: 3000;
@@ -347,7 +340,13 @@ h1 {
 
   .status-grid {
     gap: 6px;
-    grid-template-columns: 0.55fr 1.45fr;
+    grid-template-columns: 0.45fr 1.55fr;
+  }
+
+  .tap-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .status-grid > div {
@@ -371,18 +370,21 @@ h1 {
   }
 
   .layer-menu {
-    position: absolute;
-    right: 54px;
-    top: 11px;
-    width: 92px;
     z-index: 800;
   }
 
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+
   .layer-toggle {
-    background: var(--field);
-    border: 1px solid var(--line);
+    border: 0;
+    color: var(--field);
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border-radius: 6px;
-    color: var(--ink);
     cursor: pointer;
     display: block;
     font-size: 0.78rem;
@@ -392,15 +394,13 @@ h1 {
 
   .layer-options {
     background: var(--panel);
-    border: 1px solid var(--line);
     border-radius: 8px;
-    box-shadow: 0 10px 24px rgba(23, 33, 29, 0.18);
     display: none;
     min-width: 170px;
     padding: 6px;
     position: absolute;
-    right: 0;
-    top: calc(100% + 6px);
+    right: 10px;
+    top: 54px;
     z-index: 700;
   }
 
@@ -440,19 +440,6 @@ h1 {
 
   #map {
     min-height: 0;
-  }
-
-  .tap-prompt {
-    background: rgba(255, 255, 255, 0.96);
-    left: 12px;
-    font-size: 0.82rem;
-    max-width: calc(100vw - 24px);
-    padding: 8px 10px;
-    position: fixed;
-    right: 12px;
-    top: calc(138px + env(safe-area-inset-top));
-    transform: none;
-    z-index: 4500;
   }
 
   .share-button {
