@@ -40,38 +40,53 @@ button {
 }
 
 .app-shell {
-  display: grid;
   grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
   grid-template-rows: auto 1fr;
-  min-height: 100vh;
+  display: block;
+  height: 100lvh;
+  min-height: 100lvh;
+  overflow: hidden;
+  position: relative;
 }
 
 .game-panel {
-  background: var(--panel);
-  border-right: 1px solid var(--line);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 24px;
-  position: relative;
-  z-index: 5;
+  background: var(--panel);
+  color: var(--ink);
+  margin: 10px;
+  border-radius: 20px;
+  border-right: 0;
+  gap: 8px;
+  padding: 10px 12px;
+  z-index: 3000;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.rounds-box: {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .topbar {
-  align-items: start;
   display: flex;
   gap: 18px;
   justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
-.kicker {
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  margin: 0 0 6px;
-  text-transform: uppercase;
+.topbar > div:first-child {
+  max-width: calc(100% - 180px);
 }
 
 .map-icon {
@@ -80,51 +95,59 @@ button {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 0.95;
   margin: 0;
+  font-size: 1.55rem;
+  line-height: 1;
 }
 
 .scorebox {
+  background: var(--ink);
   align-items: baseline;
-  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   border-radius: 8px;
   color: #fff;
   display: flex;
   flex: 0 0 auto;
   gap: 3px;
-  min-width: 94px;
-  padding: 12px 14px;
   justify-content: center;
+  min-width: 0;
+  min-width: 72px;
+  padding: 8px 10px;
 }
 
 .scorebox span {
-  font-size: 1.9rem;
   font-weight: 850;
   line-height: 1;
+  font-size: 1.35rem;
 }
 
 .scorebox small {
   color: #c8d5ce;
   font-weight: 750;
+  font-size: 0.76rem;
 }
 
 .status-grid {
   display: grid;
-  gap: 10px;
+  font-size: 0.8rem;
+  gap: 6px;
+  grid-template-columns: 0.45fr 1.55fr;
+}
+
+.tap-prompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .status-grid > div {
-  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   border-radius: 8px;
   display: grid;
-  gap: 4px;
   min-height: 72px;
   padding: 12px;
+  background: var(--field);
+  gap: 2px;
+  min-height: 48px;
+  padding: 7px 8px;
 }
 
 .label {
@@ -133,24 +156,43 @@ h1 {
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
+  font-size: 0.62rem;
 }
 
 .status-grid strong {
-  font-size: 1rem;
-  line-height: 1.25;
+  font-size: 0.84rem;
+  line-height: 1.15;
 }
 
 .controls {
-  display: grid;
   gap: 10px;
+  display: block;
+  min-height: 0;
 }
 
 .layer-toggle {
-  display: none;
+  border: 0;
+  color: var(--ink);
+  background: var(--field);
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  min-height: 37px;
 }
 
 .layer-options {
-  display: block;
+  box-shadow: 0 10px 28px rgba(23, 33, 29, 0.28);
+  background: var(--panel);
+  border-radius: 8px;
+  display: none;
+  min-width: 170px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  top: 54px;
+  z-index: 700;
 }
 
 .segmented {
@@ -159,7 +201,8 @@ h1 {
   border-radius: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 4px;
+  min-width: 0;
+  padding: 3px;
 }
 
 .segmented button,
@@ -169,6 +212,8 @@ h1 {
   cursor: pointer;
   font-weight: 800;
   min-height: 44px;
+  max-width: 600px;
+  margin-inline: auto;
 }
 
 .segmented button {
@@ -182,12 +227,19 @@ h1 {
   box-shadow: 0 1px 5px rgba(23, 33, 29, 0.14);
 }
 
+.segmented button,
 .primary {
-  background: var(--field);
+  font-size: 0.84rem;
+  min-height: 36px;
+}
+
+.primary {
+  background: var(--accent);
+  color: #fff;
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--field-dark);
+  background: var(--accent-dark);
 }
 
 .primary:disabled {
@@ -195,12 +247,23 @@ h1 {
   display: none;
 }
 
+.primary:not(:disabled):not(.share-button) {
+  box-shadow: 0 10px 28px rgba(23, 33, 29, 0.28);
+  height: 48px;
+  left: 16px;
+  min-height: 48px;
+  position: fixed;
+  right: 16px;
+  top: auto;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 4000;
+}
+
 .map-wrap {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 0;
 }
 
 #map {
@@ -216,22 +279,41 @@ h1 {
 
 .share-button {
   width: 100%;
-  margin-top: 10px;
   border-radius: 10px;
-  min-height: 44px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  height: 48px;
+  min-height: 48px;
+  right: 16px;
 }
 
 .rounds {
-  color: var(--field);
-  align-self: end;
-  border-right: 1px solid var(--line);
   padding: 0 24px 24px;
-  position: relative;
   z-index: 4;
+  display: none;
+  background: var(--panel);
+  border-right: 0;
+  padding: 0 12px max(8px, env(safe-area-inset-bottom));
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  z-index: 3500;
 }
 
 .rounds-toggle {
-  display: none;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  font-weight: 850;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 4px 0;
+  width: 100%;
 }
 
 .rounds ol {
@@ -240,6 +322,17 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 0;
+  max-height: 150px;
+  overflow: hidden;
+  transition:
+    max-height 160ms ease,
+    visibility 160ms ease;
+}
+
+.rounds.collapsed ol {
+  max-height: 0;
+  visibility: hidden;
 }
 
 .rounds li {
@@ -247,12 +340,21 @@ h1 {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr auto;
-  min-height: 42px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 24px;
+}
+
+.rounds.finished {
+  display: block;
+}
+
+.rounds-toggle strong {
+  color: var(--good);
+  font-size: 0.82rem;
 }
 
 .round-name {
-  font-size: 0.9rem;
+  font-size: 0.76rem;
   font-weight: 750;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -260,6 +362,7 @@ h1 {
 }
 
 .round-score {
+  font-size: 0.76rem;
   font-weight: 850;
 }
 
@@ -278,254 +381,15 @@ h1 {
   width: 30px;
 }
 
-@media (max-width: 820px) {
-  .app-shell {
-    display: block;
-    height: 100lvh;
-    min-height: 100lvh;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .glass {
-    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
-  .game-panel {
-    color: var(--field);
-    margin: 10px;
-    border-radius: 20px;
-    border-right: 0;
-    gap: 8px;
-    padding: 10px 12px;
-    z-index: 3000;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  .topbar {
-    align-items: center;
-    gap: 10px;
-  }
-
-  .topbar > div:first-child {
-    max-width: calc(100% - 180px);
-  }
-
-  .kicker {
-    display: none;
-  }
-
-  h1 {
-    font-size: 1.55rem;
-    line-height: 1;
-  }
-
-  .scorebox {
-    min-width: 72px;
-    padding: 8px 10px;
-  }
-
-  .scorebox span {
-    font-size: 1.35rem;
-  }
-
-  .scorebox small {
-    font-size: 0.76rem;
-  }
-
-  .status-grid {
-    gap: 6px;
-    grid-template-columns: 0.45fr 1.55fr;
-  }
-
-  .tap-prompt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .status-grid > div {
-    gap: 2px;
-    min-height: 48px;
-    padding: 7px 8px;
-  }
-
-  .label {
-    font-size: 0.62rem;
-  }
-
-  .status-grid strong {
-    font-size: 0.84rem;
-    line-height: 1.15;
-  }
-
-  .controls {
-    display: block;
-    min-height: 0;
-  }
-
-  .layer-menu {
-    z-index: 800;
-  }
-
-  .button-group {
-    display: flex;
-    gap: 10px;
-  }
-
-  .layer-toggle {
-    border: 0;
-    color: var(--field);
-    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 6px;
-    cursor: pointer;
-    display: block;
-    font-size: 0.78rem;
-    font-weight: 800;
-    min-height: 37px;
-  }
-
-  .layer-options {
-    background: var(--panel);
-    border-radius: 8px;
-    display: none;
-    min-width: 170px;
-    padding: 6px;
-    position: absolute;
-    right: 10px;
-    top: 54px;
-    z-index: 700;
-  }
-
-  .layer-menu.open .layer-options {
-    display: block;
-  }
-
-  .segmented {
-    min-width: 0;
-    padding: 3px;
-  }
-
-  .segmented button,
-  .primary {
-    font-size: 0.84rem;
-    min-height: 36px;
-  }
-
-  .primary:not(:disabled):not(.share-button) {
-    box-shadow: 0 10px 28px rgba(23, 33, 29, 0.28);
-    height: 48px;
-    left: 16px;
-    min-height: 48px;
-    position: fixed;
-    right: 16px;
-    top: auto;
-    bottom: calc(16px + env(safe-area-inset-bottom));
-    z-index: 4000;
-  }
-
-  .map-wrap {
-    inset: 0;
-    height: 100%;
-    min-height: 0;
-    position: absolute;
-  }
-
-  #map {
-    min-height: 0;
-  }
-
-  .share-button {
-    margin-top: 8px;
-    margin-bottom: 4px;
-    height: 48px;
-    min-height: 48px;
-    right: 16px;
-  }
-
-  .rounds {
-    border-right: 0;
-    display: none;
-    left: 0;
-    padding: 0 12px max(8px, env(safe-area-inset-bottom));
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    z-index: 3500;
-  }
-
-  .rounds.finished {
-    display: block;
-  }
-
-  .rounds-toggle {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    color: var(--ink);
-    cursor: pointer;
-    display: flex;
-    font-weight: 850;
-    justify-content: space-between;
-    min-height: 34px;
-    padding: 4px 0;
-    width: 100%;
-  }
-
-  .rounds-toggle strong {
-    color: var(--good);
-    font-size: 0.82rem;
-  }
-
-  .rounds ol {
-    gap: 0;
-    max-height: 150px;
-    overflow: hidden;
-    transition:
-      max-height 160ms ease,
-      visibility 160ms ease;
-  }
-
-  .rounds.collapsed ol {
-    max-height: 0;
-    visibility: hidden;
-  }
-
-  .rounds li {
-    grid-template-columns: minmax(0, 1fr) auto;
-    min-height: 24px;
-  }
-
-  .round-name,
-  .round-score {
-    font-size: 0.76rem;
-  }
+.layer-menu {
+  z-index: 800;
 }
 
-@media (max-width: 520px) {
-  .topbar {
-    align-items: center;
-    flex-direction: row;
-  }
+.button-group {
+  display: flex;
+  gap: 10px;
+}
 
-  .scorebox {
-    justify-content: center;
-    min-width: 0;
-  }
-
-  .status-grid strong {
-    font-size: 0.8rem;
-  }
-
-  .controls {
-    display: block;
-  }
+.layer-menu.open .layer-options {
+  display: block;
 }
