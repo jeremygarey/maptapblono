@@ -73,6 +73,7 @@ const totalScoreEl = document.querySelector("#totalScore");
 const roundLabelEl = document.querySelector("#roundLabel");
 const tapPromptEl = document.querySelector("#tapPrompt");
 const nextButton = document.querySelector("#nextButton");
+const nextButtonContent = document.querySelector("#nextButtonContent");
 const layerMenu = document.querySelector("#layerMenu");
 const layerToggle = document.querySelector("#layerToggle");
 const mapModeButton = document.querySelector("#mapMode");
@@ -214,9 +215,10 @@ function renderCurrentRound() {
     ? `Final score: ${state.totalScore} / 500`
     : `Where is ${state.dailyLocations[state.roundIndex].name}?`;
 
-  nextButton.textContent =
+  nextButtonContent.textContent =
     state.roundIndex === GAME_ROUNDS - 1 ? "Finish game" : "Next round";
   nextButton.disabled = true;
+  nextButton.style.display = "none";
   state.guessed = false;
   clearRoundMarkers();
   renderRoundList();
@@ -269,7 +271,7 @@ function showGuessResult(event) {
     });
 
   resultLine = L.polyline([event.latlng, targetLatLng], {
-    color: "#cf3f2f",
+    color: "#f0003c",
     dashArray: "8 8",
     weight: 3,
   }).addTo(map);
@@ -277,6 +279,7 @@ function showGuessResult(event) {
   totalScoreEl.textContent = state.totalScore;
   tapPromptEl.textContent = `+${score} points - ${formatDistance(distance)} away`;
   nextButton.disabled = false;
+  nextButton.style.display = "block";
   renderRoundList();
 }
 
