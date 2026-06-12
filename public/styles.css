@@ -46,22 +46,27 @@ button {
   position: relative;
 }
 
-.game-panel {
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  background: var(--panel);
-  color: var(--ink);
-  margin: 10px;
-  border-radius: 20px;
-  border-right: 0;
-  gap: 8px;
-  padding: 10px 12px;
+.game-panel-container {
   z-index: 3000;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  padding: 12px;
+}
+
+.game-panel {
+  max-width: 600px;
+  margin-inline: auto;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 20px;
+  border-right: 0;
+  padding: 10px;
+  gap: 10px;
 }
 
 .rounds-box {
@@ -74,7 +79,6 @@ button {
 
 .topbar {
   display: flex;
-  gap: 18px;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
