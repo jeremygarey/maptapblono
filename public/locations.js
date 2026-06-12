@@ -3337,7 +3337,7 @@ const locations = [
     lng: -88.9930318,
   },
   {
-    name: "Thorntons",
+    name: "Thorntons (Empire St)",
     type: "Shopping",
     lat: 40.4874136,
     lng: -88.9944934,
@@ -3421,7 +3421,7 @@ const locations = [
     lng: -89.0350603,
   },
   {
-    name: "Thorntons",
+    name: "Thorntons (Main St)",
     type: "Shopping",
     lat: 40.4878859,
     lng: -88.942469,
@@ -3565,7 +3565,7 @@ const locations = [
     lng: -88.9863217,
   },
   {
-    name: "Panda Express (South Veterans Parkway)",
+    name: "Panda Express (Veterans Parkway)",
     type: "Food & Drink",
     lat: 40.5054669,
     lng: -88.9538286,
@@ -3605,12 +3605,6 @@ const locations = [
     type: "Food & Drink",
     lat: 40.5314267,
     lng: -88.9964849,
-  },
-  {
-    name: "Panda Express (Veterans Parkway)",
-    type: "Food & Drink",
-    lat: 40.4844576,
-    lng: -89.0223213,
   },
   {
     name: "Arby's (Morrissey Drive)",
