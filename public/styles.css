@@ -101,7 +101,7 @@ h1 {
 .scorebox {
   background: var(--ink);
   align-items: baseline;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #fff;
   display: flex;
   flex: 0 0 auto;
@@ -127,7 +127,7 @@ h1 {
 .status-grid {
   display: grid;
   font-size: 0.8rem;
-  gap: 6px;
+  gap: 10px;
   grid-template-columns: 0.45fr 1.55fr;
 }
 
@@ -138,7 +138,7 @@ h1 {
 }
 
 .status-grid > div {
-  border-radius: 8px;
+  border-radius: 12px;
   display: grid;
   min-height: 72px;
   padding: 12px;
