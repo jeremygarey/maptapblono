@@ -20,10 +20,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-}
-
-body {
-  background: #edf3ef;
+  background: var(--ink);
   color: var(--ink);
   font-family:
     Inter,
@@ -67,7 +64,7 @@ button {
   top: 0;
 }
 
-.rounds-box: {
+.rounds-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,11 +136,9 @@ h1 {
 
 .status-grid > div {
   border-radius: 12px;
-  display: grid;
   min-height: 72px;
   padding: 12px;
   background: var(--field);
-  gap: 2px;
   min-height: 48px;
   padding: 7px 8px;
 }
