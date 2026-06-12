@@ -33,8 +33,6 @@ const map = L.map("map", {
   maxBoundsViscosity: 0.75,
 }).setView(BLOOMINGTON_NORMAL_CENTER, initialZoom());
 
-L.control.zoom({ position: "bottomright" }).addTo(map);
-
 const mapLayer = L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
   {
