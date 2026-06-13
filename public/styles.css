@@ -300,18 +300,20 @@ h1 {
 }
 
 .rounds {
-  padding: 0 24px 24px;
   z-index: 4;
   display: none;
   background: var(--panel);
   border-right: 0;
-  padding: 0 12px max(8px, env(safe-area-inset-bottom));
+  padding: 6px 12px max(8px, env(safe-area-inset-bottom));
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: auto;
   z-index: 3500;
+  max-width: 600px;
+  margin-inline: auto;
+  border-radius: 20px 20px 0 0;
 }
 
 .rounds-toggle {

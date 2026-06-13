@@ -85,6 +85,7 @@ const roundListEl = document.querySelector("#roundList");
 const roundItemTemplate = document.querySelector("#roundItemTemplate");
 const mobileLayoutQuery = window.matchMedia("(max-width: 820px)");
 const shareButton = document.querySelector("#shareButton");
+const shareButtonContent = document.querySelector("#shareButtonContent");
 
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
@@ -323,12 +324,10 @@ function buildShareText() {
     return "🟥";
   }
 
-  const emojiRow = state.results.map((r) => scoreEmoji(r.score)).join("");
+  // const emojiRow = state.results.map((r) => scoreEmoji(r.score)).join("");
   const lines = [
-    `📍 MapTap BloNo – ${dateStr}`,
+    `📍 maptapblono.com – ${dateStr}`,
     `Score: ${state.totalScore} / 500`,
-    ``,
-    emojiRow,
     ``,
     ...state.dailyLocations.map((loc, i) => {
       const r = state.results[i];
@@ -348,8 +347,11 @@ function shareResults() {
   } else {
     // Fallback: copy to clipboard
     navigator.clipboard.writeText(text).then(() => {
-      shareButton.textContent = "Copied!";
-      setTimeout(() => (shareButton.textContent = "Share Results"), 2000);
+      shareButtonContent.textContent = "Copied!";
+      setTimeout(
+        () => (shareButtonContent.textContent = "Share Results"),
+        2000,
+      );
     });
   }
 }
