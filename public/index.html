@@ -57,7 +57,7 @@
                     aria-expanded="false"
                     aria-controls="layerOptions"
                   >
-                    <span class="btn-front btn-front-secondary">
+                    <span class="btn-front btn-front-secondary btn-front-svg">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640"
@@ -72,22 +72,24 @@
                     </span>
                   </button>
                   <div id="layerOptions" class="layer-options">
-                    <button
-                      id="satelliteMode"
-                      class="active btn-pushable btn-secondary"
-                      type="button"
-                    >
-                      <span class="btn-front btn-front-secondary"
-                        >Satellite</span
+                    <div class="layer-options-front">
+                      <button
+                        id="satelliteMode"
+                        class="active btn-pushable btn-secondary"
+                        type="button"
                       >
-                    </button>
-                    <button
-                      id="mapMode"
-                      class="active btn-pushable btn-secondary"
-                      type="button"
-                    >
-                      <span class="btn-front btn-front-secondary">Map</span>
-                    </button>
+                        <span class="btn-front btn-front-secondary"
+                          >Satellite</span
+                        >
+                      </button>
+                      <button
+                        id="mapMode"
+                        class="active btn-pushable btn-secondary"
+                        type="button"
+                      >
+                        <span class="btn-front btn-front-secondary">Map</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div class="scorebox" aria-label="Current score">
