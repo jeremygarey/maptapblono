@@ -242,6 +242,7 @@ h1 {
 .btn-front-primary {
   color: white;
   background: var(--accent);
+  border: 1px solid var(--accent-dark);
 }
 
 .btn-front-secondary {
