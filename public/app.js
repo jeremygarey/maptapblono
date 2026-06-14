@@ -243,7 +243,7 @@ function renderCurrentRound() {
     : `${state.roundIndex + 1} / ${GAME_ROUNDS}`;
   tapPromptEl.textContent = isFinished
     ? `Final score: ${state.totalScore} / 500`
-    : `Where is ${state.dailyLocations[state.roundIndex].name}?`;
+    : `Tap on ${state.dailyLocations[state.roundIndex].name}?`;
 
   nextButtonContent.textContent =
     state.roundIndex === GAME_ROUNDS - 1 ? "Finish game" : "Next round";
