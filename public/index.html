@@ -170,6 +170,14 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/locations.js"></script>
-    <script src="/app.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js",
+          "firebase/analytics": "https://www.gstatic.com/firebasejs/11.0.0/firebase-analytics.js"
+        }
+      }
+    </script>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>

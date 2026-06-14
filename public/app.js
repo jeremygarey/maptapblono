@@ -1,3 +1,6 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
 const BLOOMINGTON_NORMAL_CENTER = [40.5084, -88.9937];
 const GAME_ROUNDS = 5;
 const FEET_PER_METER = 3.28084;
@@ -391,3 +394,16 @@ if (window.visualViewport) {
     map.invalidateSize();
   });
 }
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAoy7t3w5QTA5p4ckHs-gL4Gxp_ky_zewA",
+  authDomain: "maptapblono.firebaseapp.com",
+  projectId: "maptapblono",
+  storageBucket: "maptapblono.firebasestorage.app",
+  messagingSenderId: "356098878676",
+  appId: "1:356098878676:web:8dee9744d607ad9b8adf41",
+  measurementId: "G-G2ER04VP5S",
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
