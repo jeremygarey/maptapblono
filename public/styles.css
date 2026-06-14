@@ -63,7 +63,7 @@ button {
   color: var(--ink);
   border-radius: 20px;
   padding: 10px;
-  gap: 10px;
+  gap: 6px;
   display: flex;
   flex-direction: column;
   transform: translateY(-4px);
