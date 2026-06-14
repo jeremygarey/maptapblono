@@ -131,6 +131,32 @@ function dailySelection() {
   return pool.slice(0, GAME_ROUNDS);
 }
 
+function saveResultsCookie() {
+  const data = {
+    date: todayKey(),
+    totalScore: state.totalScore,
+    results: state.results.map((r, i) => ({
+      score: r.score,
+      distance: r.distance,
+      name: state.dailyLocations[i].name,
+    })),
+  };
+
+  const expires = new Date();
+  expires.setDate(expires.getDate() + 2);
+  document.cookie = `maptap=${encodeURIComponent(JSON.stringify(data))}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+}
+
+function loadResultsCookie() {
+  const match = document.cookie.match(/(?:^|;\s*)maptap=([^;]*)/);
+  if (!match) return null;
+  try {
+    return JSON.parse(decodeURIComponent(match[1]));
+  } catch {
+    return null;
+  }
+}
+
 function scoreDistance(distanceMeters) {
   const distanceFeet = distanceMeters * FEET_PER_METER;
   const adjustedDistance = Math.max(
@@ -251,6 +277,8 @@ function showGuessResult(event) {
     distance,
   };
 
+  saveResultsCookie();
+
   guessMarker = L.marker(event.latlng)
     .addTo(map)
     .bindTooltip("Your tap", {
@@ -361,6 +389,16 @@ function shareResults() {
 shareButton.addEventListener("click", shareResults);
 
 state.dailyLocations = dailySelection();
+const saved = loadResultsCookie();
+if (saved && saved.date === todayKey()) {
+  state.roundIndex = saved.results.length;
+  state.totalScore = saved.totalScore;
+  state.results = saved.results.map((r) => ({
+    score: r.score,
+    distance: r.distance,
+  }));
+  state.guessed = false;
+}
 renderCurrentRound();
 
 map.on("click", showGuessResult);
