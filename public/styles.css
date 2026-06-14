@@ -39,13 +39,7 @@ button {
 }
 
 .app-shell {
-  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
-  display: block;
-  height: 100lvh;
-  min-height: 100lvh;
-  overflow: hidden;
-  position: relative;
+  min-height: 100dvh;
 }
 
 .game-panel-container {
