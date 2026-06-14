@@ -312,7 +312,6 @@ function setLayer(mode) {
 function buildShareText() {
   const [year, month, day] = todayKey().split("-").map(Number);
   const dateStr = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
     month: "long",
     day: "numeric",
   }).format(new Date(year, month - 1, day));
@@ -326,8 +325,8 @@ function buildShareText() {
 
   // const emojiRow = state.results.map((r) => scoreEmoji(r.score)).join("");
   const lines = [
-    `📍 maptapblono.com – ${dateStr}`,
-    `Score: ${state.totalScore} / 500`,
+    `📍 maptapblono.com ${dateStr}`,
+    `${state.totalScore} / 500`,
     ``,
     ...state.dailyLocations.map((loc, i) => {
       const r = state.results[i];
