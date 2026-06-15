@@ -2617,18 +2617,6 @@ const locations = [
     lng: -88.9652603,
   },
   {
-    name: "Aberdeen Park",
-    type: "Park",
-    lat: 40.4985373,
-    lng: -88.9387095,
-  },
-  {
-    name: "Dallas Park",
-    type: "Park",
-    lat: 40.4974668,
-    lng: -88.9400794,
-  },
-  {
     name: "McGraw Park",
     type: "Park",
     lat: 40.494448,
