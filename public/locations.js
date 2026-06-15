@@ -271,7 +271,7 @@ const locations = [
     lng: -88.9504786,
   },
   {
-    name: "Buffalo Wild Wings",
+    name: "Buffalo Wild Wings (S Main St)",
     type: "Food & Drink",
     lat: 40.5050519,
     lng: -88.9949018,
@@ -955,7 +955,7 @@ const locations = [
     lng: -88.9981398,
   },
   {
-    name: "Buffalo Wild Wings",
+    name: "Buffalo Wild Wings (E Empire St)",
     type: "Food & Drink",
     lat: 40.4889191,
     lng: -88.910448,
@@ -1529,12 +1529,6 @@ const locations = [
     type: "Education",
     lat: 40.4721404,
     lng: -88.9961455,
-  },
-  {
-    name: "Walmart Pharmacy",
-    type: "Medical",
-    lat: 40.5155479,
-    lng: -88.9496069,
   },
   {
     name: "Meijer Pharmacy",
@@ -3313,7 +3307,7 @@ const locations = [
     lng: -88.9510921,
   },
   {
-    name: "Qik N EZ",
+    name: "Qik N EZ (S Veterans Parkway)",
     type: "Shopping",
     lat: 40.458478,
     lng: -88.9707111,
@@ -3343,7 +3337,7 @@ const locations = [
     lng: -88.9944934,
   },
   {
-    name: "Qik n Ez",
+    name: "Qik n Ez (Vernon Ave)",
     type: "Shopping",
     lat: 40.5032403,
     lng: -88.9549752,
@@ -3409,7 +3403,7 @@ const locations = [
     lng: -88.9501223,
   },
   {
-    name: "Qik-n-EZ",
+    name: "Qik N EZ (N Main St)",
     type: "Shopping",
     lat: 40.5303895,
     lng: -88.9966204,
