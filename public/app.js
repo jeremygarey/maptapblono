@@ -361,7 +361,7 @@ function buildShareText() {
     ``,
     ...state.dailyLocations.map((loc, i) => {
       const r = state.results[i];
-      return `${scoreEmoji(r.score)} ${loc.name}: ${r.score} (${formatDistance(r.distance)})`;
+      return `${scoreEmoji(r.score)} ${loc.name}  ${r.score}`;
     }),
   ];
 
