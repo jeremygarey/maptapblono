@@ -2317,12 +2317,6 @@ const locations = [
     lng: -88.9523463,
   },
   {
-    name: "Campus Recreation Climbing Wall",
-    type: "Park",
-    lat: 40.5078934,
-    lng: -88.9938551,
-  },
-  {
     name: "Condor Club 24/7 Golf Simulator",
     type: "Park",
     lat: 40.5464803,
