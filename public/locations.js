@@ -2437,12 +2437,6 @@ const locations = [
     lng: -88.9895654,
   },
   {
-    name: "ISU Lot",
-    type: "Park",
-    lat: 40.5141984,
-    lng: -89.0077214,
-  },
-  {
     name: "Gaelic Park",
     type: "Park",
     lat: 40.4640464,
