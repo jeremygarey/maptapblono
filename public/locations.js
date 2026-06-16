@@ -2317,12 +2317,6 @@ const locations = [
     lng: -88.9523463,
   },
   {
-    name: "McDonald's PlayPlace",
-    type: "Park",
-    lat: 40.4720374,
-    lng: -88.9531236,
-  },
-  {
     name: "Campus Recreation Climbing Wall",
     type: "Park",
     lat: 40.5078934,
