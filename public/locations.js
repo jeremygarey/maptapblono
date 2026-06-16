@@ -409,7 +409,7 @@ const locations = [
     lng: -88.9860893,
   },
   {
-    name: "Coffee Hound",
+    name: "Coffee Hound (Uptown)",
     type: "Food & Drink",
     lat: 40.5093511,
     lng: -88.9862165,
@@ -511,7 +511,7 @@ const locations = [
     lng: -88.9938891,
   },
   {
-    name: "Coffee Hound Roastery and Café",
+    name: "Coffee Hound (Downtown)",
     type: "Food & Drink",
     lat: 40.4816038,
     lng: -88.9935712,
