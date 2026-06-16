@@ -3415,12 +3415,6 @@ const locations = [
     lng: -88.9931089,
   },
   {
-    name: "Old Main Cornerstone",
-    type: "Landmark",
-    lat: 40.50985,
-    lng: -88.9913551,
-  },
-  {
     name: "The Sesquicentennial Gates",
     type: "Landmark",
     lat: 40.4883302,
