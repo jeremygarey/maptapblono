@@ -142,7 +142,23 @@
           aria-expanded="false"
           aria-controls="roundList"
         >
-          <span>Rounds</span>
+          <span class="rounds-toggle-text">
+            <svg
+              class="rounds-chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="24px"
+              height="24px"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            Rounds
+          </span>
           <strong id="roundsSummary">0 / 500</strong>
         </button>
         <ol id="roundList"></ol>
@@ -162,7 +178,10 @@
     <template id="roundItemTemplate">
       <li>
         <span class="round-name"></span>
-        <span class="round-score"></span>
+        <span class="round-score">
+          <span class="round-distance"></span>
+          <span class="round-points"></span>
+        </span>
       </li>
     </template>
 

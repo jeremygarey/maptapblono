@@ -324,6 +324,33 @@ h1 {
   width: 100%;
 }
 
+.rounds-toggle-text {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.rounds-chevron {
+  width: 24px;
+  height: 24px;
+  transition: transform 180ms ease;
+}
+
+#roundsToggle[aria-expanded="false"] .rounds-chevron {
+  transform: rotate(180deg);
+}
+
+.round-score {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.round-distance {
+  opacity: 0.6;
+  font-size: 0.85em;
+}
+
 .rounds ol {
   display: grid;
   gap: 8px;

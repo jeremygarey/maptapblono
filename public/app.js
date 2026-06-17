@@ -201,9 +201,15 @@ function renderRoundList() {
     const result = state.results[index];
     item.querySelector(".round-name").textContent =
       `${index + 1}. ${location.name}`;
-    item.querySelector(".round-score").textContent = result
-      ? `${result.score}`
-      : "-";
+    if (result) {
+      item.querySelector(".round-distance").textContent = formatDistance(
+        result.distance,
+      );
+      item.querySelector(".round-points").textContent = result.score;
+    } else {
+      item.querySelector(".round-distance").textContent = "";
+      item.querySelector(".round-points").textContent = "-";
+    }
     roundListEl.appendChild(item);
   });
 }
@@ -362,13 +368,7 @@ function renderAllResults() {
 
     const location = state.dailyLocations[index];
 
-    const guess = L.marker(result.guessLatLng)
-      .addTo(map)
-      .bindTooltip("Your tap", {
-        permanent: true,
-        direction: "top",
-        offset: [0, -8],
-      });
+    const guess = L.marker(result.guessLatLng).addTo(map);
 
     const target = L.marker(result.targetLatLng, {
       icon: L.divIcon({
