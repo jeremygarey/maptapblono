@@ -6,7 +6,7 @@ const GAME_ROUNDS = 5;
 const FEET_PER_METER = 3.28084;
 const FEET_PER_MILE = 5280;
 const PERFECT_SCORE_RADIUS_FEET = 100;
-const MAX_SCORE_DISTANCE_FEET = FEET_PER_MILE * 3.5;
+const MAX_SCORE_DISTANCE_FEET = FEET_PER_MILE * 5;
 const SCORE_CURVE_EXPONENT = 1.35;
 const MOBILE_INITIAL_ZOOM = 12;
 const DESKTOP_INITIAL_ZOOM = 13;
@@ -425,6 +425,16 @@ window.addEventListener("load", () => {
 
 window.addEventListener("resize", () => {
   map.invalidateSize();
+});
+
+// refresh page if date changes
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    const saved = loadResultsCookie();
+    if (!saved || saved.date !== todayKey()) {
+      window.location.reload();
+    }
+  }
 });
 
 if (window.visualViewport) {
