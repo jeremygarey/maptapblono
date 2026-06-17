@@ -131,27 +131,28 @@ function dailySelection() {
   return pool.slice(0, GAME_ROUNDS);
 }
 
-function saveResultsCookie() {
+function saveResultsStorage() {
   const data = {
     date: todayKey(),
     totalScore: state.totalScore,
     results: state.results.map((r, i) => ({
       score: r.score,
       distance: r.distance,
+      guessLat: r.guessLatLng?.lat,
+      guessLng: r.guessLatLng?.lng,
+      targetLat: r.targetLatLng?.lat,
+      targetLng: r.targetLatLng?.lng,
       name: state.dailyLocations[i].name,
     })),
   };
 
-  const expires = new Date();
-  expires.setDate(expires.getDate() + 2);
-  document.cookie = `maptap=${encodeURIComponent(JSON.stringify(data))}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+  localStorage.setItem("maptap", JSON.stringify(data));
 }
 
-function loadResultsCookie() {
-  const match = document.cookie.match(/(?:^|;\s*)maptap=([^;]*)/);
-  if (!match) return null;
+function loadResultsStorage() {
   try {
-    return JSON.parse(decodeURIComponent(match[1]));
+    const raw = localStorage.getItem("maptap");
+    return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
   }
@@ -250,6 +251,7 @@ function renderCurrentRound() {
   nextButton.disabled = true;
   nextButton.style.display = "none";
   state.guessed = false;
+
   clearRoundMarkers();
   renderRoundList();
 
@@ -257,6 +259,7 @@ function renderCurrentRound() {
     roundsPanel.classList.remove("collapsed");
     roundsToggle.setAttribute("aria-expanded", "true");
     shareButton.style.display = isFinished ? "block" : "none";
+    renderAllResults();
   }
 }
 
@@ -275,9 +278,11 @@ function showGuessResult(event) {
   state.results[state.roundIndex] = {
     score,
     distance,
+    guessLatLng: event.latlng,
+    targetLatLng: targetLatLng,
   };
 
-  saveResultsCookie();
+  saveResultsStorage();
 
   guessMarker = L.marker(event.latlng)
     .addTo(map)
@@ -340,6 +345,61 @@ function setLayer(mode) {
   closeLayerMenu();
 }
 
+// Track all summary layers so they can be cleared if needed
+let summaryLayers = [];
+
+function clearSummaryLayers() {
+  summaryLayers.forEach((layer) => map.removeLayer(layer));
+  summaryLayers = [];
+}
+
+function renderAllResults() {
+  clearSummaryLayers();
+  const bounds = [];
+
+  state.results.forEach((result, index) => {
+    if (!result.guessLatLng || !result.targetLatLng) return;
+
+    const location = state.dailyLocations[index];
+
+    const guess = L.marker(result.guessLatLng)
+      .addTo(map)
+      .bindTooltip("Your tap", {
+        permanent: true,
+        direction: "top",
+        offset: [0, -8],
+      });
+
+    const target = L.marker(result.targetLatLng, {
+      icon: L.divIcon({
+        className: "",
+        html: `<div class="target-marker">${index + 1}</div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 15],
+      }),
+    })
+      .addTo(map)
+      .bindTooltip(location.name, {
+        permanent: true,
+        direction: "bottom",
+        offset: [0, 12],
+      });
+
+    const line = L.polyline([result.guessLatLng, result.targetLatLng], {
+      color: "#f0003c",
+      dashArray: "8 8",
+      weight: 3,
+    }).addTo(map);
+
+    summaryLayers.push(guess, target, line);
+    bounds.push(result.guessLatLng, result.targetLatLng);
+  });
+
+  if (bounds.length) {
+    map.fitBounds(L.latLngBounds(bounds), { padding: [40, 40] });
+  }
+}
+
 function buildShareText() {
   const [year, month, day] = todayKey().split("-").map(Number);
   const dateStr = new Intl.DateTimeFormat("en-US", {
@@ -389,13 +449,16 @@ function shareResults() {
 shareButton.addEventListener("click", shareResults);
 
 state.dailyLocations = dailySelection();
-const saved = loadResultsCookie();
+const saved = loadResultsStorage();
 if (saved && saved.date === todayKey()) {
   state.roundIndex = saved.results.length;
   state.totalScore = saved.totalScore;
   state.results = saved.results.map((r) => ({
     score: r.score,
     distance: r.distance,
+    guessLatLng: r.guessLat != null ? L.latLng(r.guessLat, r.guessLng) : null,
+    targetLatLng:
+      r.targetLat != null ? L.latLng(r.targetLat, r.targetLng) : null,
   }));
   state.guessed = false;
 }
@@ -430,7 +493,7 @@ window.addEventListener("resize", () => {
 // refresh page if date changes
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
-    const saved = loadResultsCookie();
+    const saved = loadResultsStorage();
     if (!saved || saved.date !== todayKey()) {
       window.location.reload();
     }
