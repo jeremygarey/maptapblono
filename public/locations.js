@@ -3421,7 +3421,7 @@ const locations = [
     lng: -88.9515577,
   },
   {
-    name: "Starbucks (Veterans Parkway)",
+    name: "Starbucks (College Hills)",
     type: "Food & Drink",
     lat: 40.5065273,
     lng: -88.9551666,
@@ -3451,7 +3451,7 @@ const locations = [
     lng: -88.9547312,
   },
   {
-    name: "Starbucks (North Veterans Parkway)",
+    name: "Starbucks (N Veterans Parkway)",
     type: "Food & Drink",
     lat: 40.4807828,
     lng: -88.952112,
@@ -3481,7 +3481,7 @@ const locations = [
     lng: -88.955061,
   },
   {
-    name: "Chipotle (North Veterans Parkway)",
+    name: "Chipotle (N Veterans Parkway)",
     type: "Food & Drink",
     lat: 40.4825991,
     lng: -88.952136,
@@ -3505,13 +3505,13 @@ const locations = [
     lng: -88.9876887,
   },
   {
-    name: "Starbucks (North Veterans Parkway)",
+    name: "Starbucks (Hy-Vee)",
     type: "Food & Drink",
     lat: 40.497478,
     lng: -88.9501675,
   },
   {
-    name: "Starbucks (Veterans Parkway)",
+    name: "Starbucks (Target)",
     type: "Food & Drink",
     lat: 40.5072385,
     lng: -88.9572933,
