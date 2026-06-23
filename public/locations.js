@@ -1191,8 +1191,8 @@ const locations = [
   {
     name: "The Love Shack",
     type: "Food & Drink",
-    lat: 40.4887891,
-    lng: -88.96003,
+    lat: 40.483851,
+    lng: -88.942563,
   },
   {
     name: "The Original Pancake House",
