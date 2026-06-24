@@ -103,7 +103,7 @@ const locations = [
     lng: -88.9602134,
   },
   {
-    name: "Potbelly",
+    name: "Potbelly (S Main St)",
     type: "Food & Drink",
     lat: 40.5046291,
     lng: -88.9950699,
